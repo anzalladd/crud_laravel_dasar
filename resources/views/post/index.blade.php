@@ -11,7 +11,9 @@
             {{session()->get('success')}}
         </div>
     @endif
-
+    @if(count($posts) == 0)
+        <h1>No data yet please Enter Data</h1>
+    @else
     <table class="table table-striped">
         <thead>
             <tr>
@@ -35,7 +37,7 @@
                 <td>
                     <form action="{{route('post.destroy', $post->id)}}" method="post">
                         @csrf
-                        @method('DELETE')
+                        @method ('DELETE')
                         <button class="btn btn-danger" type="submit">Delete</button>
                     </form>
                 </td>
@@ -43,6 +45,7 @@
             @endforeach
         </tbody>
     </table>
+    @endif
     <a href="{{route('post.create')}}">
     <button class="btn btn-success">Add Book</button>
     </a>
